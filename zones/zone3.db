@@ -1,6 +1,6 @@
-$ORIGIN delegated.example.org. 
+$ORIGIN example.org. 
 $TTL 86400 
-@	IN	SOA	dns1.delegated.example.com.	hostmaster.example.com. (
+@	IN	SOA	dns1.example.com.	hostmaster.example.com. (
 			2001062501 ; serial                     
 			21600      ; refresh after 6 hours                     
 			3600       ; retry after 1 hour                     
@@ -8,7 +8,11 @@ $TTL 86400
 			86400 )    ; minimum TTL of 1 day  
 		     
 		           
-	IN	NS	dns1.delegated.example.org.       
+	IN	NS	dns1.example.org.       
 	
-dns1	IN	A	127.0.0.2
-server1	IN	A   1.2.3.4
+dns1	IN	A	127.0.0.3
+
+server1	IN	CNAME	server1.delegated.example.org.
+
+delegated IN NS dns1.delegated.example.org.
+dns1.delegated.example.org. IN A 127.0.0.2

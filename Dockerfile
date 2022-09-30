@@ -11,6 +11,7 @@ RUN apt install -y git
 RUN apt install -y vim
 RUN apt install -y dnsutils
 RUN apt install -y bind9
+RUN apt install -y net-tools
 
 RUN git clone https://github.com/coredns/coredns.git coredns
 
@@ -28,4 +29,8 @@ RUN go build
 
 COPY zones /zones
 
-CMD ["/zones/run.sh"]
+COPY conf /conf
+
+WORKDIR /conf
+
+CMD ["/conf/run.sh"]
